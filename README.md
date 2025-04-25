@@ -138,22 +138,21 @@ Once a maintainer reviews and approves the PR, it will be squashed & merged into
 - Goalie fatigue or rebound‑context features
 - SHAP explainability dashboard
 - Probability calibration (`CalibratedClassifierCV`)
-- Model card & data sheet for transparency
 
 ---
 
  📜 License
 
 Released under the **MIT License**—see `LICENSE` for details.  
-Feel free to remix, but keep a link to the original repo.
 
 ---
 
 ## 🙏 Acknowledgements
 
-- **`nhlapi.com`** for the raw play‑by‑play feed.  
+- **`https://github.com/Zmalski/NHL-API-Reference`** for the raw play‑by‑play feed.  
 - **`xgboost`**, **`scikit‑learn`**, and **`imbalanced‑learn`** for the heavy lifting.  
-- Graduate students in the U of T Hockey Analytics course (2025 cohort) for beta testing.
+- OUSAC members for beta testing and offering improvements.
 
-Enjoy firing wrist shots at improving this model—pull requests welcome!
+Hope everyone enjoys and model—pull requests welcome! 
 
+Any questions are business inquiries, email us: info@statsyuk.ca
