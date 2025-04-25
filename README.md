@@ -58,6 +58,51 @@ Everything happens inside **one notebook** so nothing is hidden.
 
 ---
 
+## 🏒 Model specifics & results
+
+### Feature set (35 – 45 columns)
+
+| Group | Examples | Rationale |
+|-------|----------|-----------|
+| **Geometry** | `shot_distance_calc`, `shot_angle_calc`, `distance_sq`, `angle_sq`, `dist_x_angle` | Core physics of shooting. |
+| **Context / Flow** | `time_since_last_event`, `distance_from_last_event`, `delta_x/y`, `movement_speed`, `time_fraction`, `period` | Captures rush chances, rebounds, fatigue, and game clock. |
+| **Spatial zones** | `in_slot`, `home_plate`, `behind_net`, `radial_distance`, binned distance (`dist_bin`) | Encodes high-danger areas per coaching guidelines. |
+| **Game state** | One-hot score-differential buckets (`down2+`, `down1`, `tie`, `up1`, `up2+`) | Separates desperation shots from settled play. |
+| **Shot mechanics** | One-hot `shotType` (wrist, snap, slap, backhand) | Lets the model learn different success rates per technique. |
+
+### Top 10 features by XGBoost gain
+
+| Rank | Feature | Relative importance |
+|------|---------|---------------------|
+| 1 | **`home_plate`** | 0.195 |
+| 2 | `shotType_wrist` | 0.174 |
+| 3 | `shotType_snap` | 0.149 |
+| 4 | `shotType_slap` | 0.115 |
+| 5 | `shotType_backhand` | 0.065 |
+| 6 | `distance_sq` | 0.045 |
+| 7 | `shot_distance_calc` | 0.043 |
+| 8 | `log_distance` | 0.037 |
+| 9 | `in_slot` | 0.036 |
+| 10 | `time_since_last_event` | 0.020 |
+
+*(Full bar chart in `plots/feature_importance.png`.)*
+
+### Hold-out performance (seasons 2022-23 to 2024-25)
+
+| Metric | Score |
+|--------|-------|
+| **ROC AUC** | **0.799** |
+| Log-loss | 0.416 |
+| Brier score | 0.140 |
+
+![ROC Curve](plots/roc_curve.png)  
+*The model cleanly separates made vs. missed shots (AUC ≈ 0.80).*
+
+![Reliability Diagram](plots/brier_score.png)  
+*Calibration is tight: predictions hug the diagonal, meaning probabilities are well-calibrated.*
+
+---
+
 ## 📁 Expected directory layout
 
 ```text
