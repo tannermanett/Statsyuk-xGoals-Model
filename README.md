@@ -11,8 +11,8 @@ This repository exposes the entire workflow—**raw event data → engineered fe
 |------|---------|
 | `pipeline.ipynb` | Main notebook: data load → preprocessing → feature engineering → random XGBoost GPU search → evaluation & plots |
 | `data/xg_table.csv.gz` *(compressed)* | Stand‑alone shot‑event table (one row per shot). 100 × smaller than raw CSV; pandas reads it natively. |
-| `models/xgb_combined_gpu_random.pkl` | Fitted XGBoost classifier (best hyper‑params from 20‑trial search). |
-| `plots/` | Auto‑generated ROC curve, feature‑importance bar chart, and reliability diagram. |
+| `xgb_combined_gpu_random.pkl` | Fitted XGBoost classifier (best hyper‑params from 20‑trial search). |
+| `plots/` | Auto‑generated ROC curve, **Brier score**, and feature‑importance charts. | | Auto‑generated ROC curve, feature‑importance bar chart, and reliability diagram. |
 | `requirements.txt` / `environment.yml` | Exact Python dependencies (CUDA‑ready). |
 | `LICENSE` | MIT—do what you like, just keep attribution. |
 
@@ -64,17 +64,13 @@ Everything happens inside **one notebook** so nothing is hidden.
 .
 ├── data/
 │   └── xg_table.csv.gz
-├── models/
-│   └── xgb_combined_gpu_random.pkl
 ├── plots/
-│   ├── roc_curve.png
+│   ├── brier_score.png
 │   ├── feature_importance.png
-│   └── reliability_diagram.png
-├── scripts/
-│   └── export_xg_table.py  # optional DB → CSV converter
+│   └── roc_curve.png
 ├── pipeline.ipynb
-├── requirements.txt
-├── environment.yml
+├── xgb_combined_gpu_random.pkl
+├── .gitignore
 ├── README.md  ← you are here
 └── LICENSE
 ```
